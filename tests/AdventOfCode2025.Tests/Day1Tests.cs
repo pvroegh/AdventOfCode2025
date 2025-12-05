@@ -15,6 +15,6 @@ public class Day1Tests
     public void Day1_Solution2()
     {
         var day = new Day1("Day1Test");
-        Assert.Equal("", day.Solution2());
+        Assert.Equal("6", day.Solution2());
     }
 }
