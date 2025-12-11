@@ -27,17 +27,23 @@ public class Day1(string? filename = null) : BaseDay(filename)
         foreach (var line in Input)
         {
             var numberOfClicks = int.Parse(line[1..]);
-            var offset = (line[0] == 'R' ? numberOfClicks : -numberOfClicks);
-            for (int i = 0; i < Math.Abs(numberOfClicks); i++)
+            for (var i = 0; i < numberOfClicks; i++)
             {
-                position += offset >= 0 ? 1 : -1;
-                crossingZeroCounter += position == 0 ? 1 : 0;
-                position = TrueMod;
+                if (line[0] == 'R')
+                {
+                    position++;
+                    position %= 100;
+                    if (position == 0) crossingZeroCounter++;
+                }
+                else
+                {
+                    position--;
+                    if (position == -1) position = 99;
+                    if (position == 0) crossingZeroCounter++;
+                }
             }
         }
 
         return crossingZeroCounter.ToString();
     }
-    
-    private static int TrueMod(int a, int n) => ((a % n) + n) % n;
 }
